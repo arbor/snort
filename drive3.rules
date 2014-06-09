@@ -1,0 +1,2 @@
+#
+alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:"[ASERT] TROJAN W32/Drive3 Checkin"; flow:established,to_server; content:"POST"; http_method; content:"99="; fast_pattern; depth:3; http_client_body; pcre:"/^99=1\x26ver=\d{5}\x26req=\d{9,10}$/P"; reference:url,www.arbornetworks.com/asert/2014/03/drive-returns-with-new-tactics-and-new-attacks; reference:md5,237c98f2b31a3353b1d81bd3bdb2c8ed; classtype:trojan-activity; sid:3000002; rev:1;)
